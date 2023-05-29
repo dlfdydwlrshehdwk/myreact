@@ -9,3 +9,13 @@
   padding: 20px;
   width: 100%;
 }
+
+div{
+  box-sizing: border-box;
+}
+.list {
+  padding-left: 20px;
+  text-align-last: left;
+  border-bottom: 1px solid grey
+  ;
+}
