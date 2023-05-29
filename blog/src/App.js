@@ -9,6 +9,13 @@ function Modal(props){
       <h4>{props.글제목}</h4>
       <p>날짜</p>
       <p>상세내용</p>
+      <button onClick={
+        ()=>{
+          let copy = [...props.글제목]
+          copy[0] = '여자코트추천'
+          props.글제목변경(copy)
+        }
+      }>글수정</button>
     </div>
   )
 }
@@ -95,7 +102,7 @@ function App() {
       { } 안에 if문을 적을 수 없으니 삼항연산자를 이용
       */}
       {
-        modal == true? <Modal color={'yellow'} 글제목={글제목} /> : null
+        modal == true? <Modal 글제목변경={글제목변경} color='yellow' 글제목={글제목} /> : null
       }
       
     </div>
