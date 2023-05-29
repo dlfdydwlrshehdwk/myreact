@@ -2,6 +2,16 @@
 import './App.css';
 import { useState } from 'react';
 
+
+function Modal(){
+  return(
+    <div className='modal'>
+      <h4>제목</h4>
+      <p>날짜</p>
+      <p>상세내용</p>
+    </div>
+  )
+}
 function App() {
 
   let post = '강남 점심 맛집';
@@ -11,14 +21,15 @@ function App() {
   function  함수(){
     따봉변경(따봉+1)
   }
-  function 가나다정렬(){
-    let copy = [...글제목]
+  // function 가나다정렬(){
+  //   let copy = [...글제목]
 
-    function ascending(a,b){return (a<b)?-1:(a==b)?0:1;}
-    copy.sort(ascending);
-    글제목변경(copy)
+  //   function ascending(a,b){return (a<b)?-1:(a==b)?0:1;}
+  //   copy.sort(ascending);
+  //   글제목변경(copy)
 
-  }
+  // }
+  
 
   return (
     <div className="App">
@@ -31,7 +42,12 @@ function App() {
         글제목변경(copy);
       }}>글수정</button>
 
-      <button onClick={ 가나다정렬 }>가나다순 정렬</button>
+      <button onClick={ ()=>{
+        let copy = [...글제목];
+        copy.sort()
+        글제목변경(copy)
+      } 
+      }>가나다순 정렬</button>
 
 
       <div className="list">
@@ -46,6 +62,8 @@ function App() {
         <h4>{ 글제목[2] }</h4>
         <p>2월 17일 발행</p>
       </div>
+
+      <Modal />
     </div>
   );
 }
