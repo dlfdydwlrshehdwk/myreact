@@ -14,6 +14,7 @@ function App() {
     
     <div className='App'>
 
+      {/* 라우터 */}
       <Routes>
         {/* <Route path='/' element={<div>쌩 /는 메인페이지임</div>}/> */}
         <Route path='/' element={
@@ -23,27 +24,22 @@ function App() {
           <div className='main-bg' style={{backgroundImage :'url('+작명+')'}}>
             {/* 이미지 넣을때 */}
           </div>
-          <Container>
-            <Row>
-              {/* map을 이용한 반복문처리 */}
-              {
-                shoes.map((x,i)=>{
-                  console.log(x)
-                  return(
-                    <>
-                    <List shoes ={shoes[i]} idx={i}/>
-                    {/* <h2>{x.id}</h2>
-                    <h2>{x.price}</h2>
-                    <h2>{x.title}</h2> */}
-                    </>
-                  )
-                })
-              }
-              </Row>
-            </Container>
-        </>}/>
-        <Route path='/detail' element={<div>안녕</div>}/>
-        <Route path='/about' element={<div>잘가</div>}/>
+          
+          <Shoes shoes={shoes}/>
+
+        </>
+      }/>
+        <Route path='/detail' 
+        element={
+          <>
+            <Navnav />
+          </>
+        }/>
+        <Route path='/about' element={
+        <>
+          <Navnav />
+        </>
+        }/>
       </Routes>
 
       
@@ -90,13 +86,38 @@ function Navnav(props){
     <>
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">휠라</Navbar.Brand>
+          <Navbar.Brand href="#"><Link to={'/'}>휠라</Link></Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">홈</Nav.Link>
-            <Nav.Link href="#features">장바구니</Nav.Link>
+            <Link to={'/detail'}>상세페이지</Link>
+            <Nav.Link href="/about">어바웃</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
+    </>
+  )
+}
+
+function Shoes(props){
+  return(
+    <>
+      <Container>
+            <Row>
+              {/* map을 이용한 반복문처리 */}
+              {
+                props.shoes.map((x,i)=>{
+                  console.log(x)
+                  return(
+                    <>
+                    <List shoes ={props.shoes[i]} idx={i}/>
+                    {/* <h2>{x.id}</h2>
+                    <h2>{x.price}</h2>
+                    <h2>{x.title}</h2> */}
+                    </>
+                  )
+                })
+              }
+              </Row>
+            </Container>
     </>
   )
 }
