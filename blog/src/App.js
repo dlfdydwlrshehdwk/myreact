@@ -26,6 +26,8 @@ function App() {
   let [따봉,따봉변경] = useState([0,0,0]);
   let [modal,setModal] = useState(false);
   let [title,setTitle] = useState(2)
+  let [입력값,입력값변경] = useState('');
+
   // map()사용법 
   // 1. array 자료 개수만큼 함수안의 코드 실행해줌
   // 2. 함수의 파라미터는 array안에 있던 자료 
@@ -87,16 +89,31 @@ function App() {
           return(
           <div className="list" key={i} onClick={()=>{setTitle(i)}}>
           <h4 onClick={()=>{setModal(modal == true? false : true)}}>{ 글제목[i] }
-          <span onClick={()=>{
+          <span onClick={(e)=>{
+            e.stopPropagation();
             let copy =[...따봉];
             copy[i] = copy[i] +1;
             따봉변경(copy)
-          } }>좋아요👍</span>{ 따봉[i] }</h4>
+          } }>좋아요👍</span>{ 따봉[i] }
+          </h4>
           <p>2월 17일 발행</p>
-          </div>  
+          <button onClick={()=>{
+            let copy = [...글제목]
+            글제목변경(copy)
+            copy.splice(i,1)
+          }}>삭제하기</button>  
+          </div>
           )
         })
       }
+
+      <input onChange={(e)=>{ 입력값변경(e.target.value); 
+        }}></input>
+        <button onClick={()=>{
+          let copy = [...글제목];
+          copy.push(입력값);
+          글제목변경(copy)
+        }}>추가하기</button>
 
       {/* <Modal /> */}
       {/* if문 
