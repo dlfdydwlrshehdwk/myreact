@@ -88,8 +88,11 @@ function App() {
         글제목.map(function(a,i){
           return(
           <div className="list" key={i} onClick={()=>{setTitle(i)}}>
+            {/* 모달창열기 */}
           <h4 onClick={()=>{setModal(modal == true? false : true)}}>{ 글제목[i] }
+          {/* 따봉숫자 늘려주기 */}
           <span onClick={(e)=>{
+            // 이벤트버블링방지
             e.stopPropagation();
             let copy =[...따봉];
             copy[i] = copy[i] +1;
@@ -98,9 +101,13 @@ function App() {
           </h4>
           <p>2월 17일 발행</p>
           <button onClick={()=>{
+            // 따봉과 글내역 데이터삭제 -> 선택한 내용삭제하기
             let copy = [...글제목]
             글제목변경(copy)
             copy.splice(i,1)
+            let copy2 = [...따봉]
+            따봉변경(copy2)
+            copy2.splice(i,1)
           }}>삭제하기</button>  
           </div>
           )
@@ -110,9 +117,17 @@ function App() {
       <input onChange={(e)=>{ 입력값변경(e.target.value); 
         }}></input>
         <button onClick={()=>{
-          let copy = [...글제목];
-          copy.push(입력값);
-          글제목변경(copy)
+          // 입력값이 없으면 새로운내용이 안생기게 하기
+          입력값 != '' ? hh() : null;
+          
+          function hh(){
+            let copy = [...글제목];
+            copy.push(입력값);
+            글제목변경(copy)
+            let copy2 = [...따봉];
+            copy2.push(0);
+            따봉변경(copy2)
+          }
         }}>추가하기</button>
 
       {/* <Modal /> */}
