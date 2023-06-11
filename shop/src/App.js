@@ -43,7 +43,7 @@ function App() {
       }/>
 
         {/* 디테일 페이지 */}
-        <Route path='/detail' 
+        <Route path='/detail/0' 
         element={
           <>
           <Navnav navigate ={navigate}/>
