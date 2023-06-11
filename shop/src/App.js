@@ -52,14 +52,27 @@ function App() {
               요청결과는 axios.get('url').then((작명)=>{  })
               ㄴ 작명이 ajax에서 가져온것 이다
             */
+          //  로딩중 입니다 띄우기
+          // 로딩중ui 띄우기
            axios.get('https://codingapple1.github.io/shop/data2.json')
            .then((res)=>{
             let copy = [...shoes,...res.data]
             setShoes(copy)
+            // 로딩중ui 숨기기
             })
             .catch(()=>{ // ajax요청에 실패하면 캣치가 뜸
               console.log('실패함..')
+              // 로딩중ui 숨기기
             })
+            // 서버로 데이터 전송하는 post
+            // axios.post('/asdf',{name : "kim"})
+
+            // 동시에 ajax요청 여러개 하려면
+            // Promise.all([axios.get('/url1'),axios.get('/url2')])
+            // .then(()=>{ })
+
+            
+
 
           }}>버튼</button>
         </>
