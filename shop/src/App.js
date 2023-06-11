@@ -43,7 +43,7 @@ function App() {
       }/>
 
         {/* 디테일 페이지 */}
-        <Route path='/detail/0' 
+        <Route path='/detail' 
         element={
           <>
           <Navnav navigate ={navigate}/>
@@ -167,7 +167,7 @@ function Navnav(props){
 
             <Nav className="me-auto">
             <Nav.Link onClick={()=>{
-              props.navigate('/detail')
+              props.navigate('/detail/0')
             }}>상세페이지</Nav.Link>
             
             <Nav.Link onClick={()=>{
