@@ -6,10 +6,11 @@ import { useState } from 'react';
 import data from './data.js';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import Detail from './routes/Detail.js';
-
+import axios from 'axios'
+// https://codingapple1.github.io/shop/data2.json
 
 function App() {
-  let [shoes] = useState(data);
+  let [shoes,setShoes] = useState(data);
   // 페이지 이동을 도와주는 useNavigate()
   let navigate = useNavigate();
 
@@ -39,6 +40,28 @@ function App() {
           </div>
           {/* 신발 리스트 */}
           <Shoes shoes={shoes}/>
+          <button onClick={()=>{
+            // ajax 쓰려면 3가지 방법중 1택
+            /* 
+              옛날방법 XMLHttpRequest
+              요즘방법 fetch()
+              라이브러리 이용  axios - 코드짧게 이용가능 npm install axios
+              ㄴ import axios from 'axios' 해줌
+              axios.get('url') - ajax이용한 get요청(axios사용)
+              요청결과는 axios.get('url').then()
+              요청결과는 axios.get('url').then((작명)=>{  })
+              ㄴ 작명이 ajax에서 가져온것 이다
+            */
+           axios.get('https://codingapple1.github.io/shop/data2.json')
+           .then((res)=>{
+            let copy = [...shoes,...res.data]
+            setShoes(copy)
+            })
+            .catch(()=>{ // ajax요청에 실패하면 캣치가 뜸
+              console.log('실패함..')
+            })
+
+          }}>버튼</button>
         </>
       }/>
 
@@ -192,7 +215,7 @@ function Shoes(props){
               {/* map을 이용한 반복문처리 */}
               {
                 props.shoes.map((x,i)=>{
-                  console.log(x)
+                  // console.log(x)
                   return(
                     <>
                     <List shoes ={props.shoes[i]} idx={i}/>
