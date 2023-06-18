@@ -3,6 +3,7 @@ import { Routes, Route, Link, useParams } from 'react-router-dom'
 import "../css/detail.css"
 import $ from 'jquery';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -21,6 +22,7 @@ function Detail(props){
   let [alert,setAlert] = useState(true);
   let [num,setNum] = useState('');
   let [탭,탭변경] = useState(0);
+  let dispatch = useDispatch()
 
   useEffect(()=>{
     if(isNaN(num) == true){

@@ -7,6 +7,7 @@ import data from './data.js';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import Detail from './routes/Detail.js';
 import axios from 'axios'
+import Cart from './routes/Cart';
 // https://codingapple1.github.io/shop/data2.json
 
 function App() {
@@ -143,6 +144,9 @@ function App() {
 
         {/* 잘못된페이지 (없는페이지) 만들기 404페이지 */}
         <Route path="*" element={<div>이 페이지는 없는 페이지 입니다.</div>}></Route>
+
+
+        <Route path="/cart" element={<Cart />}/>
       </Routes>
 
 
