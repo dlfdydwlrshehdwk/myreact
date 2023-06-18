@@ -20,6 +20,7 @@ function Detail(props){
   let [count , setCount] = useState(0);
   let [alert,setAlert] = useState(true);
   let [num,setNum] = useState('');
+  let [탭,탭변경] = useState(0);
 
   useEffect(()=>{
     if(isNaN(num) == true){
@@ -93,8 +94,51 @@ function Detail(props){
       <p>{props.shoes[id].content}</p>
       <div><button>주문하기</button></div>
       </section>
+
+      <Nav variant="tabs" defaultActiveKey="link0"> 
+      {/* 뭐가먼저 눌려있게할건지 defaultActiveKey 이벤트키 넣으면댐 */}
+      <Nav.Item>
+        <Nav.Link onClick={()=>{탭변경(0)}} 
+        eventKey="link0">버튼</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link onClick={()=>{탭변경(1)}} 
+        eventKey="link1">버튼1</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link onClick={()=>{탭변경(2)}} 
+        eventKey="link2"> 버튼2</Nav.Link>
+      </Nav.Item>
+    </Nav>
+    <TabContent 탭 = {탭} />
+
       </>
     )
 }
+
+function TabContent(props){
+
+  let [fade,setFade] = useState('')
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setFade('end')
+    },100)
+    return()=>{
+      setFade('')
+    }
+  },[props.탭])
+
+  if ( props.탭 == 0){
+    return <div className={'start ' + fade}>내용0</div>
+  }
+  if ( props.탭 == 1){
+     return <div className={'start ' + fade}>내용1</div>
+  }
+  if ( props.탭 == 2){
+    return <div className={`start ` + fade}>내용2</div>
+  }
+}
+
 
 export default Detail;
